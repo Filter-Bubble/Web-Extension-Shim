@@ -18,6 +18,12 @@ if (modernizr.existsLocalStorage()) {
 var chrome, browser;
 chrome = browser = {
 	i18n: {
+		getAcceptLanguages: function(callback) {
+			var languages = ["en-US", "en-GB", "en"];
+			if (typeof callback !== "undefined") {
+				callback(languages);
+			}
+		},
 		getMessage: function(messageName, substitutions) {
 			var messageObject = messagesJson[messageName];
 			if (typeof messageObject == "undefined") {
@@ -28,6 +34,14 @@ chrome = browser = {
 				return "";
 			}
 			return message;
+		},
+		getUILanguage: function() {
+			return "en-US";
+		},
+		detectLanguage: function(text, callback) {
+			if (typeof callback !== "undefined") {
+				callback("en-US");
+			}
 		}
 	},
 	storage: {
