@@ -80,7 +80,15 @@ chrome = browser = {
 				}
 				callback(results);
 			}
-		}
+		},
+		sync: {
+		    set: function(...params) { 
+			browser.storage.local.set(...params);
+		    },
+		    get: function(...params) {
+			return browser.storage.local.get(...params); 
+		    },
+		},
 	},
 	history: {
 		search: function(query, callback) {
